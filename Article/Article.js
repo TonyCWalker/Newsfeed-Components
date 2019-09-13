@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'World of Warcraft: Player risks all for epic loot!',
+    date: 'May 11, 2005',
+    firstParagraph: `LEEEEEEEEEE EEEEEEEEEE EEEEEEEEE EEEEEEE EEEEEEEE EEEEEEE EEEEEEEEEEE EEEEEEEE EEEEEEEEEEEEE EEEEEEEEEEE EEEEEEEEEE EEEEEEEE EEEEEEEEE EEEEEEEEEE EEEEEEE EEEEEEE EEEEEEEE EEEEEEEEEE EEEEEEEE EEEEEEEEEE EEEEEEEEEE EEEEEEEE EEEEE EEEEEEEE EEEEEEEE EEEEEEE EEEEEEEEEEE EEEEEEEEE EEEEEEEE EEEEEEE EEEEEEE EEEEEEEE EEEEEEEEE`,
+
+    secondParagraph: `ROOOOOOOOO OOOOOOOOOO OOOOOOOOOOO OOOOOOOOO OOOOOOOOOO OOOOOOOOOOOOO OOOOOOOOOOOO OOOOOOOOOOOOO OOOOOOOO OOOOOOOOOOO OOOOOOOOOOOOO OOOOOOOOO OOOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOO OOOOOOOOOOO OOOOOOOOOOOOO OOOOOOOOO OOOOOOOOOOOOOOO OOOOOOOOOOOOOOOOOO OOOOOOOOOOO OOOOOOOOOOOOO OOOOOOOOO OOOOOOOOOOO OOOOOOOOOOO OOOOOOOOOOOY!`,
+
+    thirdParagraph: `JEEEEEEEEEEEE EEEEEEEEEEEEE EEEEEEEEEEEEE EEEEEEEEEEEEEE EEEEEEEEEEEEEE EEEEEEEEEEEEEE EEEEEEEEEEEEEE  EEEEEEEEEEEENNN NNNNNNNNNNNNNNN NNNNNNNNNNNNNNN NNNNNNNNNNNNNNN  NNNNNNNNNNNNNNN NNNNNNNNNNNNNNNNN NKKKKKKKKKKKKKKK KKKKKKIIIIIIIIII IIIIIIIIIIIIIIII IIIIIINNNNNNNNNN NNNNNNNNNNNNNNNN NNNNNNNNNNNNNNNN NNNNNSSSSSSSSSSS SSSSSSSSSSSSSSSS SSSSSSSS!`
   }
 ];
 
@@ -112,3 +121,54 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(article){
+  const newArticle = document.createElement('div');
+  newArticle.classList.add('article');
+
+  const h2 = document.createElement('h2');
+  h2.textContent= `${article.title}`
+  newArticle.appendChild(h2);
+
+  const p = document.createElement('p');
+  p.classList.add('date');
+  p.textContent= `${article.date}`;
+  newArticle.appendChild(p);
+
+  const firstParagraph = document.createElement('p');
+  firstParagraph.textContent= `${article.firstParagraph}`;
+  firstParagraph.style.textAlign= 'text-wrap';
+  newArticle.appendChild(firstParagraph);
+
+  const secondParagraph = document.createElement('p');
+  secondParagraph.textContent= `${article.secondParagraph}`;
+  newArticle.appendChild(secondParagraph);
+
+  const thirdParagraph = document.createElement('p');
+  thirdParagraph.textContent= `${article.thirdParagraph}`;
+  newArticle.appendChild(thirdParagraph);
+
+  const button = document.createElement('span');
+  button.classList.add('expandButton');
+  button.style.height= '25px';
+  button.style.width= '100%';
+  button.textContent= '...';
+  button.style.fontWeight= 'bold';
+  button.style.textAlign= 'center';
+  button.style.fontSize= '20px';
+  button.addEventListener('click', (e) => {
+    newArticle.classList.toggle('article-open');
+  });
+  newArticle.appendChild(button);
+
+  let articles = document.querySelector('.articles');
+  articles.appendChild(newArticle);
+
+  return newArticle;
+}
+
+let articleArray = data.map((item) =>{
+  let articles = createArticle(item);
+  return articles;
+});
+
+console.log(articleArray);
