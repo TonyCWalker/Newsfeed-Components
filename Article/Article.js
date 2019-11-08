@@ -123,38 +123,40 @@ const data = [
 */
 function createArticle(article){
   const newArticle = document.createElement('div');
-  newArticle.classList.add('article');
-
-  const h2 = document.createElement('h2');
+  newArticle.classList.add('article'); 
+ 
+  const h2 = document.createElement('h2'); 
   h2.textContent= `${article.title}`
-  newArticle.appendChild(h2);
-
-  const p = document.createElement('p');
-  p.classList.add('date');
-  p.textContent= `${article.date}`;
-  newArticle.appendChild(p);
+  
+  const p = document.createElement('p'); 
+  p.classList.add('date'); 
+  p.textContent= `${article.date}`; 
 
   const firstParagraph = document.createElement('p');
   firstParagraph.textContent= `${article.firstParagraph}`;
-  firstParagraph.style.textAlign= 'text-wrap';
-  newArticle.appendChild(firstParagraph);
-
+  firstParagraph.style.textAlign= 'text-wrap'; 
+  
   const secondParagraph = document.createElement('p');
   secondParagraph.textContent= `${article.secondParagraph}`;
-  newArticle.appendChild(secondParagraph);
-
+  
   const thirdParagraph = document.createElement('p');
   thirdParagraph.textContent= `${article.thirdParagraph}`;
+
+  newArticle.appendChild(h2);
+  newArticle.appendChild(p);
+  newArticle.appendChild(firstParagraph);
+  newArticle.appendChild(secondParagraph);
   newArticle.appendChild(thirdParagraph);
 
   const button = document.createElement('span');
   button.classList.add('expandButton');
   button.style.height= '25px';
   button.style.width= '100%';
-  button.textContent= '...';
+  button.textContent= '***';
   button.style.fontWeight= 'bold';
   button.style.textAlign= 'center';
   button.style.fontSize= '20px';
+  button.style.color= 'green';
   button.addEventListener('click', (e) => {
     newArticle.classList.toggle('article-open');
   });
